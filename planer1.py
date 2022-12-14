@@ -98,6 +98,23 @@ class Planer(QMainWindow):
         self.listWidget_3.clear()
         self.listWidget.clear()
         self.plans()
+        
+        self.listWidget_8.clear()
+        self.listWidget_8.addItem('Завтра у вас:')
+        a = 6
+        delta_time1 = dt.timedelta(days=1)
+        dat = dt.date.today() + delta_time1
+        con = sqlite3.connect("Notes_planer.db")
+        cursor = con.cursor()
+        result = cursor.execute(f'''
+                                        SELECT Note FROM Notes
+                                        WHERE date = "{dat.strftime("%d.%m.%Y")}"
+                                        AND Notes.categories_id = "{a}"
+                                    ''').fetchall()
+        for el in result:
+            self.listWidget_8.addItem(f'  {el[0]}')
+        con.commit()
+        con.close()
 
     def plans(self):
         a = 5
