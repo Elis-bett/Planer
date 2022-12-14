@@ -15,7 +15,7 @@ start = theday - dt.timedelta(days=weekday)
 dates = [start + dt.timedelta(days=d) for d in range(1, 8)]
 
 
-def f():
+def fc():
     #Функция для записи и распознавания речи
     CHUNK = 1024
     FRT = pyaudio.paInt16
@@ -182,7 +182,7 @@ class Notes(QtWidgets.QMainWindow):
             con.close()
 
     def count(self):
-        self.textEdit_4.setPlainText(f())
+        self.textEdit_4.setPlainText(fc())
 
     def search(self):
         self.listWidget.clear()
